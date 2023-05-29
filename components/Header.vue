@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <nav class="fixed flex flex-row items-center justify-between py-5 px-8 w-full z-10">
+    <div id="mynav">
+        <nav :class='"fixed flex flex-row items-center justify-between py-5 px-8 w-full " + this.getBg()'>
             <img src="/Vector.png" class="w-6.5 h-7" alt="">
             <div class="flex item-center space-x-6 py-2 px-3 text-white font-roboto">
                 <NuxtLink to="/">Français (FR)</NuxtLink>
@@ -14,7 +14,7 @@
         </nav>
     
         <div class="top-content">
-            <img class="md:mx-auto w-full bg-cover" src="/HERO.PNG" alt="">
+            <img class="md:mx-auto w-full bg-cover" src="/HERO.png" alt="">
                 <div class="md:absolute bg-white rounded-md left-20 bottom-28 py-8 px-6" style="max-width: 391px; max-height: 508px;">
                     <h1 class="text-3xl font-medium leading-9">Réservez des hébergements et des activités uniques.</h1>
                     <div class="w-full mt-5">
@@ -53,6 +53,14 @@
 
 <script>
 export default {
-    name: 'Header'
+    name: 'Header',
+    props: {
+        topOfPage: Boolean
+    },
+    methods: {
+        getBg() {
+            return this.topOfPage ? "" : "bg-black"
+        }
+    }
 }
 </script>

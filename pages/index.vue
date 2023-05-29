@@ -1,12 +1,21 @@
 <template>
-  <div>
-      <Header />
+  <div v-on:scroll="handleScroll">
+      <Header :topOfPage="this.view.topOfPage"/>
       <div class="mx-20 my-10">
         <section>
-          <h1 class="text-2xl font-bold">Explorer Airbnb</h1>
+          <h1 class="text-2xl font-bold" @click="checkScroll">Explorer Airbnb</h1>
+          <div class="flex flex-row items-center">
             <div v-for="item in five" :key="item.id">
                 <Five-Card :data=item />
             </div>
+          </div>
+        </section>
+        <section>
+          <div class="">
+                <div v-for="item in six" :key="item.id">
+                    <SixCard :data=item />
+                </div>
+          </div>
         </section>
         <section>
             <h1 class="text-2xl font-bold">Découvrez les aventures Airbnb</h1>
@@ -64,11 +73,12 @@
 </template>
 
 <script>
-import FiveCard from '~/components/FiveCard.vue'
 export default {
-  components: { FiveCard },
   data() {
     return {
+      view: {
+        topOfPage: true,
+      },
       firsts: [
         {
           id: 1,
@@ -271,8 +281,31 @@ export default {
           name: 'Aventures',
           img: '/img26.png'
         }
+      ],
+      six:[
+        {
+          id: 1,
+          name: 'Hébergements Airbnb Plus',
+          detail: 'Une sélection de logements vérifiés selon des critères de qualité et de design',
+          img: '/img27.png',
+          logo: ''
+        }
       ]
     }
+  },
+  beforeMount() {
+    window.addEventListener('scroll', this.handleScroll)
+  },
+  methods: {
+    handleScroll(){
+      if(window.pageYOffset>150){
+        if(this.view.topOfPage) this.view.topOfPage = false
+      } else {
+        if(!this.view.topOfPage) this.view.topOfPage = true
+      }
+    }
+  },
+  mounted() {
   },
 }
 </script>
