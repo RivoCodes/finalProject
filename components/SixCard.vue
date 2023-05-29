@@ -4,7 +4,7 @@
   <div class="pb-4 flex items-center flex-col ">
     <img :src="data.img" class="w-full h-80 object-cover block" alt="AIRBNB"/>
     <NuxtLink to="/" class=" mt-4 hover:scale-x-110 transition-all ease">
-      <div class="mt[-12]">
+      <div class="">
         <span>Découvrir des logements</span>
         
       </div>
